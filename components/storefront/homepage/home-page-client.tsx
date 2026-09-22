@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useMemo, useState, type ReactNode } from 'react';
+import { useMemo, useState, type ReactNode, Suspense } from 'react';
 import {
   ArrowRight,
   Bot,
@@ -191,7 +191,9 @@ export function HomePageClient({ products, categories, services }: HomePageClien
         </div>
       </section>
 
-      <QuickShop products={products} />
+      <Suspense fallback={<div className="h-40 bg-[#F8FAFC]" />}>
+        <QuickShop products={products} />
+      </Suspense>
 
       <section className="w-full section-y bg-[#F8FAFC] border-b border-slate-200">
         <div className="store-shell-wide promo-grid">

@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Search } from 'lucide-react';
+import { Search, Camera, SlidersHorizontal } from 'lucide-react';
 import { Category, Product } from '@/types/product';
 import { formatPKR } from '@/lib/utils/currency';
 import { productImage } from '@/lib/utils/product-display';
@@ -12,10 +12,19 @@ import { CatalogImage } from '@/components/shared/catalog-image';
 interface ProductSearchProps {
   categories: Category[];
   compact?: boolean;
+  variant?: 'default' | 'compact' | 'mobile';
+  inputId?: string;
   onNavigate?: () => void;
 }
 
-export function ProductSearch({ categories, compact = false, onNavigate }: ProductSearchProps) {
+export function ProductSearch({
+  categories,
+  compact = false,
+  variant,
+  inputId = 'product-search-input',
+  onNavigate,
+}: ProductSearchProps) {
+  const mode = variant || (compact ? 'compact' : 'default');
   const router = useRouter();
   const rootRef = React.useRef<HTMLDivElement>(null);
   const [query, setQuery] = React.useState('');
@@ -102,8 +111,94 @@ export function ProductSearch({ categories, compact = false, onNavigate }: Produ
     }
   };
 
+  if (mode === 'mobile') {
+    return (
+      <div ref={rootRef} className="relative w-full">
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
+            goToShop();
+          }}
+          className="flex items-center gap-2"
+        >
+          <div className="relative flex-1">
+            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+            <input
+              id={inputId}
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              onFocus={() => {
+                if (results.length) setOpen(true);
+              }}
+              onKeyDown={onKeyDown}
+              placeholder="Search batteries, carbon fiber, ESCs, motors..."
+              className="w-full h-11 rounded-xl border border-slate-200 bg-white pl-9 pr-10 text-[13px] text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#073574]"
+              role="combobox"
+              aria-expanded={open}
+              aria-autocomplete="list"
+            />
+            <button
+              type="button"
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400"
+              aria-label="Focus search"
+              onClick={() => document.getElementById(inputId)?.focus()}
+            >
+              <Camera className="w-4 h-4" />
+            </button>
+          </div>
+          <Link
+            href="/shop"
+            aria-label="Open catalog filters"
+            className="h-11 w-11 shrink-0 rounded-xl border border-slate-200 bg-white text-slate-600 flex items-center justify-center"
+          >
+            <SlidersHorizontal className="w-4 h-4" />
+          </Link>
+        </form>
+        {open && (
+          <div className="absolute z-50 mt-1 w-full rounded-lg border border-slate-200 bg-white shadow-xl overflow-hidden">
+            {loading && results.length === 0 && (
+              <p className="px-4 py-3 text-xs text-slate-500">Searching catalog…</p>
+            )}
+            {!loading && results.length === 0 && query.trim().length >= 2 && (
+              <p className="px-4 py-3 text-xs text-slate-500">No matching hardware. Press Enter to search the shop.</p>
+            )}
+            {results.map((product, index) => (
+              <button
+                key={product.id}
+                type="button"
+                onMouseEnter={() => setActiveIndex(index)}
+                onClick={() => goToProduct(product)}
+                className={`w-full flex items-center gap-3 px-3 py-2 text-left ${
+                  index === activeIndex ? 'bg-[#EAF2FF]' : 'hover:bg-slate-50'
+                }`}
+              >
+                <div className="relative h-12 w-12 shrink-0 rounded border border-slate-200 overflow-hidden bg-slate-50">
+                  <CatalogImage
+                    src={productImage(product)}
+                    seed={product.sku}
+                    alt={product.name}
+                    fill
+                    sizes="48px"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="text-xs font-bold text-[#073574] line-clamp-1">{product.name}</div>
+                  <div className="text-[10px] font-mono text-slate-500">
+                    {product.sku} · {product.category.name}
+                  </div>
+                </div>
+                <div className="text-xs font-extrabold text-slate-800">{formatPKR(product.basePrice)}</div>
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
+
   return (
-    <div ref={rootRef} className={compact ? 'relative space-y-2' : 'relative w-full'}>
+    <div ref={rootRef} className={compact || mode === 'compact' ? 'relative space-y-2' : 'relative w-full'}>
       <form
         onSubmit={(event) => {
           event.preventDefault();

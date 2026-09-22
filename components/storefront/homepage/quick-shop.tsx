@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { useSearchParams } from 'next/navigation';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Product } from '@/types/product';
 import { HomepageProductCard } from '@/components/storefront/homepage-product-card';
@@ -16,7 +17,9 @@ interface QuickShopProps {
 }
 
 export function QuickShop({ products }: QuickShopProps) {
-  const [active, setActive] = React.useState<QuickShopCollection>('bestsellers');
+  const searchParams = useSearchParams();
+  const qs = searchParams.get('qs') as QuickShopCollection | null;
+  const [active, setActive] = React.useState<QuickShopCollection>(qs && QUICK_SHOP_FILTERS.some((filter) => filter.id === qs) ? qs : 'bestsellers');
   const [items, setItems] = React.useState<Product[]>(() =>
     products.filter((product) => matchesCollection(product, 'bestsellers'))
   );
@@ -24,6 +27,12 @@ export function QuickShop({ products }: QuickShopProps) {
   const [canPrev, setCanPrev] = React.useState(false);
   const [canNext, setCanNext] = React.useState(false);
   const scrollerRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    if (qs && QUICK_SHOP_FILTERS.some((filter) => filter.id === qs)) {
+      setActive(qs);
+    }
+  }, [qs]);
 
   const meta = QUICK_SHOP_FILTERS.find((filter) => filter.id === active) || QUICK_SHOP_FILTERS[1];
 
@@ -89,8 +98,8 @@ export function QuickShop({ products }: QuickShopProps) {
   };
 
   return (
-    <section className="w-full bg-[#F8FAFC] border-b border-slate-200">
-      <div className="w-full bg-white border-b border-slate-200 sticky top-[4.75rem] z-30">
+    <section id="quick-shop" className="w-full bg-[#F8FAFC] border-b border-slate-200">
+      <div className="hidden md:block w-full bg-white border-b border-slate-200 sticky top-[4.75rem] z-30">
         <div className="store-shell flex items-center gap-3 py-3 overflow-x-auto no-scrollbar">
           <div className="shrink-0">
             <div className="type-eyebrow text-[#073574]">Quick shop</div>

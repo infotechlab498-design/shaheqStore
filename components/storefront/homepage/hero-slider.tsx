@@ -85,16 +85,102 @@ export function HeroSlider({
   const specs = productKeySpecs(product).slice(0, 2);
   const stock = productStockBadge(product);
   const inStock = product.stock > 0 && product.status !== 'OUT_OF_STOCK';
+  const specBadge = specs.map((spec) => spec.value).filter(Boolean).slice(0, 2).join(' ');
+
+  const touchX = React.useRef(0);
 
   return (
     <section
-      className="w-full bg-white border-b border-slate-200 overflow-hidden"
+      className="w-full bg-[#F4F7FB] md:bg-white border-b border-slate-200 overflow-hidden"
       aria-roledescription="carousel"
       aria-label="Featured hardware"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="store-shell py-5 lg:py-6">
+      <div
+        className="md:hidden px-3 pb-3"
+        onTouchStart={(event) => {
+          touchX.current = event.touches[0]?.clientX || 0;
+        }}
+        onTouchEnd={(event) => {
+          const dx = (event.changedTouches[0]?.clientX || 0) - touchX.current;
+          if (dx > 48) goTo(index - 1);
+          if (dx < -48) goTo(index + 1);
+        }}
+      >
+        <div className="relative overflow-hidden rounded-2xl min-h-[17.5rem] bg-[#051C42] text-white">
+          {slides.map((slide, slideIndex) => (
+            <div
+              key={slide.id}
+              className={`absolute inset-0 transition-opacity duration-500 ${
+                slideIndex === index ? 'opacity-100' : 'opacity-0'
+              }`}
+              aria-hidden={slideIndex !== index}
+            >
+              <CatalogImage
+                src={productImage(slide)}
+                seed={slide.sku}
+                alt={slide.name}
+                fill
+                priority={slideIndex === 0}
+                sizes="100vw"
+                className="object-cover"
+              />
+            </div>
+          ))}
+          <div className="absolute inset-0 bg-[#051C42]/72" />
+          <div className="relative z-10 flex flex-col justify-end min-h-[17.5rem] p-4">
+            <div className="flex flex-wrap items-center gap-1.5 mb-3">
+              {specBadge ? (
+                <span className="inline-flex items-center gap-1 rounded-md bg-emerald-600 px-2 py-1 text-[10px] font-bold">
+                  <Zap className="w-3 h-3" />
+                  {specBadge}
+                </span>
+              ) : null}
+              <span className="rounded-md bg-white/15 px-2 py-1 text-[10px] font-bold tracking-wide">
+                ISO 9001 METROLOGY HUB
+              </span>
+            </div>
+            <h1 className="text-[26px] leading-[1.08] font-extrabold uppercase tracking-tight">
+              {headlineFor(product)}
+            </h1>
+            <p className="mt-2 text-[12px] leading-5 text-blue-100 line-clamp-2">
+              {product.shortDescription}
+            </p>
+            <div className="mt-4 flex items-center gap-2">
+              <Link
+                href={`/shop?category=${product.category.slug}`}
+                className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-lg bg-[#0B4A8F] hover:bg-[#073574] px-3 py-2.5 text-[12px] font-bold"
+              >
+                Shop {product.category.name} <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+              <Link
+                href="/quote"
+                className="shrink-0 inline-flex items-center justify-center rounded-lg bg-white text-[#073574] px-3.5 py-2.5 text-[12px] font-bold"
+              >
+                CAD Quote
+              </Link>
+            </div>
+            {slides.length > 1 && (
+              <div className="mt-3 flex items-center justify-center gap-1.5">
+                {slides.map((slide, slideIndex) => (
+                  <button
+                    key={slide.id}
+                    type="button"
+                    aria-label={`Show ${slide.name}`}
+                    onClick={() => goTo(slideIndex)}
+                    className={`h-1.5 rounded-full transition-all ${
+                      slideIndex === index ? 'w-5 bg-white' : 'w-1.5 bg-white/40'
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <div className="hidden md:block store-shell py-5 lg:py-6">
         <div className="hero-layout">
           <div key={product.id} className="space-y-3 hero-copy">
             <div className="inline-flex items-center gap-1.5 bg-[#EAF2FF] border border-blue-200/80 text-[#073574] px-2.5 py-0.5 rounded-sm type-eyebrow">
