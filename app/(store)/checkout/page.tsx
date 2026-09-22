@@ -20,6 +20,7 @@ import { Breadcrumb } from '@/components/ui/breadcrumb';
 import { siteConfig } from '@/lib/config/site';
 import { formatPKR } from '@/lib/utils/currency';
 import { useCart } from '@/lib/stores/cart-store';
+import { PaymentInstructions } from '@/components/storefront/payment-instructions';
 
 export default function CheckoutPage() {
   const { items, subtotal: cartSubtotal, clear } = useCart();
@@ -355,7 +356,7 @@ export default function CheckoutPage() {
                         <span className="font-bold text-zinc-900 text-sm">Direct Bank Transfer / IBFT (Raast)</span>
                       </div>
                       <p className="text-zinc-600 font-sans text-xs">
-                        Transfer directly to Alpha Tech&apos;s Meezan Bank IBAN. Order processed once receipt is verified by accounting.
+                        Transfer to HBL account {siteConfig.payments.bank.accountTitle}. Then send the payment screenshot on WhatsApp.
                       </p>
                     </div>
                   </label>
@@ -407,7 +408,7 @@ export default function CheckoutPage() {
                         <span className="font-bold text-zinc-900 text-sm">JazzCash Mobile Account</span>
                       </div>
                       <p className="text-zinc-600 font-sans text-xs">
-                        Authorize payment directly via your JazzCash registered mobile account number.
+                        Send JazzCash to {siteConfig.payments.walletNumber}, then share the screenshot on WhatsApp {siteConfig.payments.proofWhatsapp}.
                       </p>
                     </div>
                   </label>
@@ -433,7 +434,7 @@ export default function CheckoutPage() {
                         <span className="font-bold text-zinc-900 text-sm">EasyPaisa Mobile Account</span>
                       </div>
                       <p className="text-zinc-600 font-sans text-xs">
-                        Transfer via EasyPaisa in-app push notification or OTC agent token.
+                        Send EasyPaisa to {siteConfig.payments.walletNumber}, then share the screenshot on WhatsApp {siteConfig.payments.proofWhatsapp}.
                       </p>
                     </div>
                   </label>
@@ -465,13 +466,9 @@ export default function CheckoutPage() {
                   </label>
                 </div>
 
-                {/* Architecture notice */}
-                <div className="p-3 rounded-md bg-zinc-50 border border-zinc-200 text-zinc-600 text-xs font-mono flex items-start gap-2">
-                  <AlertCircle className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
-                  <span>
-                    <strong>Production Architecture Boundary:</strong> Payment processing integrates through the centralized <code className="text-zinc-900">IPaymentProvider</code> abstraction. Real banking/gateway API tokens are configured server-side.
-                  </span>
-                </div>
+                {(paymentMethod === 'BANK_TRANSFER' || paymentMethod === 'JAZZCASH' || paymentMethod === 'EASYPAISA') && (
+                  <PaymentInstructions />
+                )}
 
                 {orderError && (
                   <div className="p-3 rounded-md bg-rose-50 border border-rose-200 text-rose-800 text-xs font-mono flex items-start gap-2">

@@ -62,7 +62,7 @@ export function WhatsAppButton({
         aria-label="Direct WhatsApp engineering chat"
       >
         <MessageSquare className="h-5 w-5 fill-current" />
-        <span className="hidden sm:inline">WhatsApp Engineer</span>
+        <span className="hidden sm:inline">WhatsApp {siteConfig.contact.whatsappDisplay}</span>
       </a>
     );
   }

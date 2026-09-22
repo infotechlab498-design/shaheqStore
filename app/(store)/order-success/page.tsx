@@ -3,22 +3,15 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { CheckCircle2, Truck, FileText, ArrowRight, ShieldCheck, Copy } from 'lucide-react';
+import { CheckCircle2, Truck, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { WhatsAppButton } from '@/components/shared/whatsapp-button';
+import { PaymentInstructions } from '@/components/storefront/payment-instructions';
 
 function OrderSuccessContent() {
   const searchParams = useSearchParams();
   const orderNumber = searchParams.get('order') || 'AT-2026-1004';
   const method = searchParams.get('method') || 'BANK_TRANSFER';
-
-  const [copied, setCopied] = React.useState(false);
-
-  const copyIban = () => {
-    navigator.clipboard?.writeText('PK76MEZN0001020304050607');
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
 
   return (
     <div className="store-shell-prose py-16 text-center space-y-8">
@@ -39,40 +32,9 @@ function OrderSuccessContent() {
       </div>
 
       {/* Bank Transfer Instructions if IBFT selected */}
-      {method === 'BANK_TRANSFER' && (
-        <div className="rounded-lg border border-amber-300 bg-amber-50/70 p-6 text-left max-w-xl mx-auto space-y-3 font-mono text-xs text-amber-950">
-          <h3 className="font-bold uppercase tracking-wider text-amber-900 flex items-center gap-2">
-            <span>Raast / IBFT Transfer Details</span>
-          </h3>
-          <p className="text-amber-800 font-sans text-xs">
-            Please transfer the invoice balance to Alpha Tech&apos;s corporate account and send the confirmation slip to our accounting WhatsApp:
-          </p>
-
-          <div className="p-3 bg-white rounded-md border border-amber-200 space-y-1.5">
-            <div className="flex justify-between">
-              <span className="text-zinc-500">Bank:</span>
-              <span className="font-bold text-zinc-900">Meezan Bank Limited</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-zinc-500">Title:</span>
-              <span className="font-bold text-zinc-900">Alpha Tech Technologies (Pvt) Ltd.</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-zinc-500">IBAN:</span>
-              <span className="font-bold text-zinc-900 font-mono">PK76 MEZN 0001 0203 0405 0607</span>
-            </div>
-          </div>
-
-          <div className="flex justify-end pt-1">
-            <button
-              type="button"
-              onClick={copyIban}
-              className="text-[11px] text-amber-800 hover:text-amber-950 font-semibold flex items-center gap-1 cursor-pointer"
-            >
-              <Copy className="h-3 w-3" />
-              {copied ? 'Copied IBAN' : 'Copy IBAN'}
-            </button>
-          </div>
+      {(method === 'BANK_TRANSFER' || method === 'JAZZCASH' || method === 'EASYPAISA') && (
+        <div className="max-w-xl mx-auto">
+          <PaymentInstructions />
         </div>
       )}
 

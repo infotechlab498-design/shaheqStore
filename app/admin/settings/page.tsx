@@ -13,9 +13,9 @@ export default function AdminSettingsPage() {
   const [warehouseAddress, setWarehouseAddress] = React.useState(siteConfig.contact.address);
 
   // Banking
-  const [bankName, setBankName] = React.useState('Meezan Bank Limited');
-  const [accountTitle, setAccountTitle] = React.useState('Alpha Tech Technologies (Pvt) Ltd.');
-  const [iban, setIban] = React.useState('PK76MEZN0001020304050607');
+  const [bankName, setBankName] = React.useState(siteConfig.payments.bank.name);
+  const [accountTitle, setAccountTitle] = React.useState(siteConfig.payments.bank.accountTitle);
+  const [iban, setIban] = React.useState(siteConfig.payments.bank.iban);
 
   // Shipping
   const [flatShippingFee, setFlatShippingFee] = React.useState(450);
@@ -89,7 +89,7 @@ export default function AdminSettingsPage() {
           </div>
 
           <div className="space-y-1">
-            <label className="text-zinc-700">Dispatch Facility Address (Lahore)</label>
+            <label className="text-zinc-700">Dispatch Facility Address</label>
             <Input
               value={warehouseAddress}
               onChange={(e) => setWarehouseAddress(e.target.value)}
@@ -126,10 +126,24 @@ export default function AdminSettingsPage() {
           </div>
 
           <div className="space-y-1">
+            <label className="text-zinc-700">Account number</label>
+            <Input
+              defaultValue={siteConfig.payments.bank.accountNumber}
+              className="text-xs h-9 font-mono"
+            />
+          </div>
+          <div className="space-y-1">
             <label className="text-zinc-700">Account IBAN (Pakistan)</label>
             <Input
               value={iban}
               onChange={(e) => setIban(e.target.value)}
+              className="text-xs h-9 font-mono"
+            />
+          </div>
+          <div className="space-y-1">
+            <label className="text-zinc-700">EasyPaisa / JazzCash</label>
+            <Input
+              defaultValue={siteConfig.payments.walletNumber}
               className="text-xs h-9 font-mono"
             />
           </div>

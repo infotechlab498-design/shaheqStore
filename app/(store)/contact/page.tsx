@@ -22,7 +22,7 @@ export default function ContactPage() {
           Connect with Alpha Tech Engineers
         </h1>
         <p className="text-sm text-zinc-600 max-w-2xl leading-relaxed">
-          Reach our Lahore facility directly for hardware inquiries, custom battery configurations, bulk pricing, or CAD project consultation.
+          Reach our NASTP Alpha Rawalpindi facility for hardware inquiries, custom battery configurations, bulk pricing, or CAD project consultation.
         </p>
       </div>
 
@@ -34,7 +34,7 @@ export default function ContactPage() {
               <Phone className="h-5 w-5 text-amber-600" />
               <h3 className="font-mono font-bold text-zinc-900 text-sm">Direct Phone & WhatsApp</h3>
             </div>
-            <p className="text-xs text-zinc-600 font-mono pl-8">{siteConfig.contact.phone}</p>
+            <p className="text-xs text-zinc-600 font-mono pl-8">{siteConfig.contact.whatsappDisplay}</p>
             <p className="text-xs text-zinc-500 pl-8 font-sans">
               Mon – Sat: 09:00 to 18:00 (PKT)
             </p>

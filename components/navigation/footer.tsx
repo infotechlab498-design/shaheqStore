@@ -22,7 +22,7 @@ export function Footer() {
               {siteConfig.description}
             </p>
             <div className="text-[11px] font-mono text-slate-500 bg-slate-50 p-2 rounded border border-slate-200 inline-block">
-              HQ: Lahore, PK · {siteConfig.contact.operatingHours}
+              {siteConfig.contact.address} · WhatsApp {siteConfig.contact.whatsappDisplay}
             </div>
             <div>
               <a

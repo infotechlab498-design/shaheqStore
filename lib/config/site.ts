@@ -12,13 +12,14 @@ export const siteConfig = {
     label: 'Pakistani Rupee',
   },
   contact: {
-    phone: '+92 300 0000000',
-    phoneFormatted: '+92 (300) 000-0000',
-    whatsapp: '+923000000000',
+    phone: '+966 58 192 5047',
+    phoneFormatted: '+966 58 192 5047',
+    whatsapp: '+966581925047',
+    whatsappDisplay: '+966 58 192 5047',
     email: 'contact@alphatech.pk',
     supportEmail: 'support@alphatech.pk',
     salesEmail: 'engineering@alphatech.pk',
-    address: 'Alpha Tech Engineering Facility, Industrial Tech Zone, Lahore, Pakistan',
+    address: 'NASTP Alpha Rawalpindi',
     operatingHours: 'Mon - Sat: 9:00 AM - 7:00 PM PKT',
   },
   social: {
@@ -28,7 +29,7 @@ export const siteConfig = {
     github: 'https://github.com/alphatech-pk',
   },
   shipping: {
-    defaultOriginCity: 'Lahore',
+    defaultOriginCity: 'Rawalpindi',
     standardDeliveryEstimate: '2 - 4 Business Days',
     expressDeliveryEstimate: '24 - 48 Hours',
     supportedCouriers: ['TCS', 'LEOPARD', 'MNP', 'TRAX'] as const,
@@ -36,6 +37,14 @@ export const siteConfig = {
     standardShippingFee: 450, // PKR
   },
   payments: {
+    bank: {
+      name: 'HBL',
+      accountTitle: 'ARJUMAND ALEEM',
+      accountNumber: '58837000118503',
+      iban: 'PK34HABB0058837000118503',
+    },
+    walletNumber: '03034440870',
+    proofWhatsapp: '+966 58 192 5047',
     acceptedMethods: [
       {
         id: 'CASH_ON_DELIVERY',
@@ -46,19 +55,19 @@ export const siteConfig = {
       {
         id: 'BANK_TRANSFER',
         name: 'Direct Bank Transfer / IBFT',
-        description: 'Transfer via Raast or Online Banking. Requires transaction receipt upload.',
+        description: 'Transfer to HBL account ARJUMAND ALEEM. Send the payment screenshot on WhatsApp.',
         isOnline: false,
       },
       {
         id: 'JAZZCASH',
         name: 'JazzCash Wallet / QR',
-        description: 'Instant mobile account payment or voucher confirmation.',
+        description: 'Send JazzCash to 03034440870, then share the screenshot on WhatsApp.',
         isOnline: true,
       },
       {
         id: 'EASYPAISA',
         name: 'EasyPaisa Wallet',
-        description: 'Instant mobile account transfer via EasyPaisa app or OTC.',
+        description: 'Send EasyPaisa to 03034440870, then share the screenshot on WhatsApp.',
         isOnline: true,
       },
       {
