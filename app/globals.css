@@ -1,0 +1,304 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-poppins), "Poppins", sans-serif;
+  --font-mono: var(--font-poppins), "Poppins", sans-serif;
+  --font-weight-black: 800;
+  --font-weight-extrabold: 800;
+}
+
+:root {
+  --type-tiny: clamp(10px, 0.65vw, 13px);
+  --type-small: clamp(12px, 0.7vw, 14px);
+  --type-body: clamp(13px, 0.85vw, 16px);
+  --type-nav: clamp(12px, 0.75vw, 15px);
+  --type-button: clamp(13px, 0.75vw, 15px);
+  --type-label: clamp(12px, 0.75vw, 14px);
+  --type-input: clamp(13px, 0.8vw, 15px);
+  --type-card-title: clamp(13px, 0.85vw, 17px);
+  --type-price: clamp(16px, 1.25vw, 24px);
+  --type-price-old: clamp(11px, 0.7vw, 14px);
+  --type-eyebrow: clamp(10px, 0.65vw, 12px);
+  --type-section: clamp(22px, 1.8vw, 36px);
+  --type-page: clamp(22px, 1.6vw, 32px);
+  --type-promo: clamp(24px, 2.4vw, 48px);
+  --type-promo-card: clamp(18px, 1.35vw, 26px);
+  --type-hero: clamp(32px, 4vw, 68px);
+  --type-hero-desc: clamp(13px, 0.9vw, 17px);
+  --type-footer-heading: clamp(13px, 0.75vw, 15px);
+  --type-footer-link: clamp(12px, 0.7vw, 14px);
+  --type-copyright: clamp(10px, 0.65vw, 12px);
+}
+
+html {
+  font-family: var(--font-poppins), "Poppins", sans-serif;
+}
+
+body {
+  font-family: var(--font-poppins), "Poppins", sans-serif;
+  font-size: var(--type-body);
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  letter-spacing: -0.02em;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+label {
+  font-size: var(--type-label);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+input,
+textarea,
+select {
+  font-size: var(--type-input);
+  font-weight: 400;
+}
+
+.font-mono,
+.font-sans {
+  font-family: var(--font-poppins), "Poppins", sans-serif;
+}
+
+.font-black,
+.font-extrabold {
+  font-weight: 800;
+}
+
+.font-light {
+  font-weight: 300;
+}
+
+.type-tiny {
+  font-size: var(--type-tiny);
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.type-small {
+  font-size: var(--type-small);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.type-body {
+  font-size: var(--type-body);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.type-nav {
+  font-size: var(--type-nav);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.type-nav-active {
+  font-weight: 600;
+}
+
+.type-button {
+  font-size: var(--type-button);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.type-label {
+  font-size: var(--type-label);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.type-input {
+  font-size: var(--type-input);
+  font-weight: 400;
+}
+
+.type-card-title {
+  font-size: var(--type-card-title);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.type-price {
+  font-size: var(--type-price);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.type-price-old {
+  font-size: var(--type-price-old);
+  font-weight: 400;
+  text-decoration-line: line-through;
+}
+
+.type-eyebrow {
+  font-size: var(--type-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.type-section {
+  font-size: var(--type-section);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.type-page {
+  font-size: var(--type-page);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.type-promo {
+  font-size: var(--type-promo);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+
+.type-promo-card {
+  font-size: var(--type-promo-card);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+}
+
+.type-hero {
+  font-size: var(--type-hero);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+}
+
+.type-hero-desc {
+  font-size: var(--type-hero-desc);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.type-footer-heading {
+  font-size: var(--type-footer-heading);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.type-footer-link {
+  font-size: var(--type-footer-link);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.type-copyright {
+  font-size: var(--type-copyright);
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.store-shell {
+  width: 100%;
+  max-width: 100%;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 640px) {
+  .store-shell {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .store-shell {
+    padding-inline: 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .store-shell {
+    padding-inline: 2.5rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .store-shell {
+    max-width: 100rem;
+    padding-inline: 3rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  .store-shell {
+    max-width: 112.5rem;
+  }
+}
+
+@media (min-width: 2560px) {
+  .store-shell {
+    max-width: 137.5rem;
+    padding-inline: 4rem;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes slideLeft {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.animate-slide-left {
+  animation: slideLeft 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes heroFade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-copy {
+  animation: heroFade 0.45s ease;
+}
+
+@keyframes heroProgress {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+.hero-progress {
+  animation: heroProgress 5.5s linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-copy,
+  .hero-progress {
+    animation: none;
+  }
+}

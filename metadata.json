@@ -1,0 +1,6 @@
+{
+  "name": "Alpha Tech",
+  "description": "Alpha Tech Engineering & E-Commerce Platform - Advanced drone components, robotics, precision engineering, and 3D printing services.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
