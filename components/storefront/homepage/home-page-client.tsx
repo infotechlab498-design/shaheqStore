@@ -135,7 +135,7 @@ export function HomePageClient({ products, categories, services }: HomePageClien
         categoryCount={displayCategories.length}
       />
 
-      <section className="w-full py-10 bg-[#F5F7FA] border-b border-slate-200">
+      <section className="w-full section-y bg-[#F5F7FA] border-b border-slate-200">
         <div className="store-shell">
           <div className="flex items-end justify-between mb-6 gap-2">
             <div>
@@ -146,7 +146,7 @@ export function HomePageClient({ products, categories, services }: HomePageClien
               All Categories ({products.length}) <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5 gap-4">
+          <div className="category-grid">
             {displayCategories.map((cat) => {
               const count = products.filter((p) => p.category.slug === cat.slug || p.categoryId === cat.id).length;
               const image = cat.image || CATEGORY_IMAGES[cat.slug] || `https://picsum.photos/seed/${cat.slug}/800/800`;
@@ -156,7 +156,7 @@ export function HomePageClient({ products, categories, services }: HomePageClien
                   href={`/shop?category=${cat.slug}`}
                   className="bg-white border border-slate-200 rounded-lg p-3 hover:border-[#073574] hover:shadow-md transition-all group flex flex-col justify-between"
                 >
-                  <div className="relative h-28 w-full rounded bg-slate-100 overflow-hidden mb-3">
+                  <div className="relative aspect-[4/3] w-full rounded bg-slate-100 overflow-hidden mb-3">
                     <CatalogImage src={image} seed={cat.slug} alt={cat.name} fill sizes="(max-width: 768px) 100vw, (max-width: 1536px) 25vw, 20vw" className="object-cover group-hover:scale-105 transition-transform duration-300" />
                     <div className="absolute top-2 left-2 bg-black/60 text-white text-[10px] font-semibold px-2 py-0.5 rounded">
                       {count} Items
@@ -177,7 +177,7 @@ export function HomePageClient({ products, categories, services }: HomePageClien
               href="/quote"
               className="bg-white border border-slate-200 rounded-lg p-3 hover:border-[#073574] hover:shadow-md transition-all group flex flex-col justify-between"
             >
-              <div className="relative h-28 w-full rounded bg-[#073574] overflow-hidden mb-3 flex items-center justify-center text-white">
+              <div className="relative aspect-[4/3] w-full rounded bg-[#073574] overflow-hidden mb-3 flex items-center justify-center text-white">
                 <Layers className="w-10 h-10" />
                 <div className="absolute top-2 right-2 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded">
                   Fast DFM
@@ -193,12 +193,12 @@ export function HomePageClient({ products, categories, services }: HomePageClien
 
       <QuickShop products={products} />
 
-      <section className="w-full py-8 sm:py-10 bg-[#F8FAFC] border-b border-slate-200">
-        <div className="store-shell grid grid-cols-1 md:grid-cols-3 gap-4">
+      <section className="w-full section-y bg-[#F8FAFC] border-b border-slate-200">
+        <div className="store-shell-wide promo-grid">
           {PROMOS.map((promo) => (
             <article
               key={promo.title}
-              className={`rounded-2xl p-6 sm:p-7 flex flex-col min-h-[230px] ${
+              className={`rounded-2xl p-6 sm:p-7 flex flex-col ${
                 promo.theme === 'navy'
                   ? 'bg-[#051C42] text-white'
                   : promo.theme === 'ice'
@@ -230,10 +230,10 @@ export function HomePageClient({ products, categories, services }: HomePageClien
         </div>
       </section>
 
-      <section className="w-full py-10 bg-white border-b border-slate-200">
+      <section className="w-full section-y bg-white border-b border-slate-200">
         <div className="store-shell">
           <SectionHeading kicker="Verified components" title="Featured hardware" href="/shop" />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5 gap-5">
+          <div className="product-grid">
             {featured.map((product) => (
               <HomepageProductCard key={product.id} product={product} />
             ))}
@@ -241,7 +241,7 @@ export function HomePageClient({ products, categories, services }: HomePageClien
         </div>
       </section>
 
-      <section id="catalog-section" className="w-full py-10 bg-[#F5F7FA] border-b border-slate-200">
+      <section id="catalog-section" className="w-full section-y bg-[#F5F7FA] border-b border-slate-200">
         <div className="store-shell space-y-5">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
             <SectionHeading kicker="Live catalog" title="Hardware in stock" href="/shop" />
@@ -252,7 +252,7 @@ export function HomePageClient({ products, categories, services }: HomePageClien
               className="w-full sm:w-80 rounded-md border border-slate-300 bg-white px-3 py-2 text-xs"
             />
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5 gap-5">
+          <div className="product-grid">
             {filteredCatalog.slice(0, 10).map((product) => (
               <HomepageProductCard key={product.id} product={product} />
             ))}
@@ -261,10 +261,10 @@ export function HomePageClient({ products, categories, services }: HomePageClien
       </section>
 
       {newArrivals.length > 0 && (
-        <section className="w-full py-10 bg-white border-b border-slate-200">
+        <section className="w-full section-y bg-white border-b border-slate-200">
           <div className="store-shell">
             <SectionHeading kicker="Just landed" title="New arrivals" href="/shop" />
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="product-grid">
               {newArrivals.map((product) => (
                 <HomepageProductCard key={product.id} product={product} />
               ))}
@@ -274,13 +274,13 @@ export function HomePageClient({ products, categories, services }: HomePageClien
       )}
 
       {services.length > 0 && (
-        <section className="w-full py-12 bg-[#051C42] text-white border-b border-slate-800">
-          <div className="store-shell grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <section className="w-full section-y bg-[#051C42] text-white border-b border-slate-800">
+          <div className="store-shell grid grid-cols-1 lg:grid-cols-2" style={{ gap: 'var(--hero-gap)' }}>
             {services.slice(0, 2).map((service) => (
               <div key={service.id} className="rounded-xl border border-white/10 bg-white/5 p-6 space-y-3">
                 <Box className="w-8 h-8 text-blue-200" />
-                <h3 className="text-xl font-black">{service.title}</h3>
-                <p className="text-sm text-blue-100">{service.shortDescription}</p>
+                <h3 className="type-promo-card">{service.title}</h3>
+                <p className="type-small text-blue-100">{service.shortDescription}</p>
                 <ul className="text-xs text-blue-100 space-y-1">
                   {service.capabilities.slice(0, 3).map((cap) => (
                     <li key={cap}>• {cap}</li>
@@ -299,12 +299,12 @@ export function HomePageClient({ products, categories, services }: HomePageClien
       )}
 
       <section className="w-full bg-white">
-        <div className="store-shell py-12 sm:py-16">
+        <div className="store-shell section-y">
           <div className="type-eyebrow text-slate-400">Tailored workflows</div>
           <h2 className="type-section text-[#073574] uppercase mt-1">
             Shop by application
           </h2>
-          <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
+          <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4" style={{ gap: 'var(--category-gap)' }}>
             {APPLICATIONS.map((item) => {
               const Icon = item.icon;
               return (
@@ -322,7 +322,7 @@ export function HomePageClient({ products, categories, services }: HomePageClien
         </div>
 
         <div className="border-t border-slate-100 bg-[#F8FAFC]">
-          <div className="store-shell py-8 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+          <div className="store-shell py-8 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4" style={{ gap: 'var(--category-gap)' }}>
             <TrustCard
               icon={<ShieldCheck className="w-5 h-5" />}
               title="100% Genuine Specs"

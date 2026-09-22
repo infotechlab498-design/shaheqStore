@@ -8,6 +8,28 @@
 }
 
 :root {
+  /* Layout — tweak these to resize the marketplace without hunting components */
+  --page-gutter: 16px;
+  --page-max: 96.25rem; /* ~1540px cap at 1920–2560 */
+  --page-max-wide: 102.5rem; /* slightly wider hero / promo */
+  --page-max-prose: 48rem;
+  --section-space: clamp(2.5rem, 4vw, 5.5rem);
+  --grid-gap: clamp(12px, 1.35vw, 24px);
+  --category-gap: clamp(16px, 1.6vw, 24px);
+  --hero-gap: clamp(1rem, 1.4vw, 1.5rem);
+  --card-min: 13.75rem; /* 220px commercial card floor */
+  --card-rail: 17.5rem;
+  --card-max-cols: 5;
+
+  /* Font weights */
+  --font-weight-light: 300;
+  --font-weight-body: 400;
+  --font-weight-label: 500;
+  --font-weight-emphasis: 600;
+  --font-weight-heading: 700;
+  --font-weight-display: 800;
+
+  /* Fluid type */
   --type-tiny: clamp(10px, 0.65vw, 13px);
   --type-small: clamp(12px, 0.7vw, 14px);
   --type-body: clamp(13px, 0.85vw, 16px);
@@ -23,21 +45,61 @@
   --type-page: clamp(22px, 1.6vw, 32px);
   --type-promo: clamp(24px, 2.4vw, 48px);
   --type-promo-card: clamp(18px, 1.35vw, 26px);
-  --type-hero: clamp(32px, 4vw, 68px);
-  --type-hero-desc: clamp(13px, 0.9vw, 17px);
+  --type-hero: clamp(26px, 2.4vw, 40px);
+  --type-hero-desc: clamp(12px, 0.72vw, 14px);
+  --hero-visual-width: min(100%, 34rem);
   --type-footer-heading: clamp(13px, 0.75vw, 15px);
   --type-footer-link: clamp(12px, 0.7vw, 14px);
   --type-copyright: clamp(10px, 0.65vw, 12px);
+
+  /* Spec aliases — change the --type-* / --font-weight-* tokens above */
+  --font-body: var(--font-poppins), "Poppins", sans-serif;
+  --font-size-body: var(--type-body);
+  --font-size-nav: var(--type-nav);
+  --font-size-card-title: var(--type-card-title);
+  --font-size-price: var(--type-price);
+  --font-size-section-title: var(--type-section);
+  --font-size-promo-title: var(--type-promo);
+  --font-size-hero: var(--type-hero);
+  --font-weight-card: var(--font-weight-emphasis);
+  --font-weight-price: var(--font-weight-heading);
+  --text-body: var(--type-body);
+  --text-nav: var(--type-nav);
+  --text-card: var(--type-card-title);
+  --text-price: var(--type-price);
+  --text-section: var(--type-section);
+  --text-promo: var(--type-promo);
+  --text-hero: var(--type-hero);
+  --line-height-body: 1.55;
+  --line-height-heading: 1.15;
+  --letter-spacing-eyebrow: 0.1em;
+}
+
+@media (min-width: 480px) {
+  :root {
+    --page-gutter: 20px;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --page-gutter: clamp(24px, 2vw, 32px);
+  }
 }
 
 html {
   font-family: var(--font-poppins), "Poppins", sans-serif;
 }
 
+html,
+body {
+  overflow-x: clip;
+}
+
 body {
   font-family: var(--font-poppins), "Poppins", sans-serif;
   font-size: var(--type-body);
-  font-weight: 400;
+  font-weight: var(--font-weight-body);
   line-height: 1.55;
   letter-spacing: 0;
 }
@@ -56,7 +118,7 @@ select {
 
 label {
   font-size: var(--type-label);
-  font-weight: 500;
+  font-weight: var(--font-weight-label);
   line-height: 1.4;
 }
 
@@ -64,7 +126,7 @@ input,
 textarea,
 select {
   font-size: var(--type-input);
-  font-weight: 400;
+  font-weight: var(--font-weight-body);
 }
 
 .font-mono,
@@ -74,44 +136,44 @@ select {
 
 .font-black,
 .font-extrabold {
-  font-weight: 800;
+  font-weight: var(--font-weight-display);
 }
 
 .font-light {
-  font-weight: 300;
+  font-weight: var(--font-weight-light);
 }
 
 .type-tiny {
   font-size: var(--type-tiny);
-  font-weight: 500;
+  font-weight: var(--font-weight-label);
   line-height: 1.45;
 }
 
 .type-small {
   font-size: var(--type-small);
-  font-weight: 400;
+  font-weight: var(--font-weight-body);
   line-height: 1.5;
 }
 
 .type-body {
   font-size: var(--type-body);
-  font-weight: 400;
+  font-weight: var(--font-weight-body);
   line-height: 1.6;
 }
 
 .type-nav {
   font-size: var(--type-nav);
-  font-weight: 500;
+  font-weight: var(--font-weight-label);
   line-height: 1.3;
 }
 
 .type-nav-active {
-  font-weight: 600;
+  font-weight: var(--font-weight-emphasis);
 }
 
 .type-button {
   font-size: var(--type-button);
-  font-weight: 600;
+  font-weight: var(--font-weight-emphasis);
   line-height: 1.2;
   letter-spacing: 0.02em;
   white-space: nowrap;
@@ -119,38 +181,38 @@ select {
 
 .type-label {
   font-size: var(--type-label);
-  font-weight: 500;
+  font-weight: var(--font-weight-label);
   line-height: 1.4;
 }
 
 .type-input {
   font-size: var(--type-input);
-  font-weight: 400;
+  font-weight: var(--font-weight-body);
 }
 
 .type-card-title {
   font-size: var(--type-card-title);
-  font-weight: 600;
+  font-weight: var(--font-weight-emphasis);
   line-height: 1.3;
   letter-spacing: -0.01em;
 }
 
 .type-price {
   font-size: var(--type-price);
-  font-weight: 700;
+  font-weight: var(--font-weight-heading);
   line-height: 1.2;
   letter-spacing: -0.02em;
 }
 
 .type-price-old {
   font-size: var(--type-price-old);
-  font-weight: 400;
+  font-weight: var(--font-weight-body);
   text-decoration-line: line-through;
 }
 
 .type-eyebrow {
   font-size: var(--type-eyebrow);
-  font-weight: 600;
+  font-weight: var(--font-weight-emphasis);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   line-height: 1.4;
@@ -158,106 +220,134 @@ select {
 
 .type-section {
   font-size: var(--type-section);
-  font-weight: 700;
+  font-weight: var(--font-weight-heading);
   line-height: 1.15;
   letter-spacing: -0.02em;
 }
 
 .type-page {
   font-size: var(--type-page);
-  font-weight: 700;
+  font-weight: var(--font-weight-heading);
   line-height: 1.15;
   letter-spacing: -0.02em;
 }
 
 .type-promo {
   font-size: var(--type-promo);
-  font-weight: 800;
+  font-weight: var(--font-weight-display);
   line-height: 1.1;
   letter-spacing: -0.025em;
 }
 
 .type-promo-card {
   font-size: var(--type-promo-card);
-  font-weight: 800;
+  font-weight: var(--font-weight-display);
   line-height: 1.12;
   letter-spacing: -0.02em;
 }
 
 .type-hero {
   font-size: var(--type-hero);
-  font-weight: 800;
-  line-height: 1.04;
+  font-weight: var(--font-weight-display);
+  line-height: 1.06;
   letter-spacing: -0.03em;
 }
 
 .type-hero-desc {
   font-size: var(--type-hero-desc);
-  font-weight: 400;
+  font-weight: var(--font-weight-body);
   line-height: 1.6;
 }
 
 .type-footer-heading {
   font-size: var(--type-footer-heading);
-  font-weight: 600;
+  font-weight: var(--font-weight-emphasis);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .type-footer-link {
   font-size: var(--type-footer-link);
-  font-weight: 400;
+  font-weight: var(--font-weight-body);
   line-height: 1.5;
 }
 
 .type-copyright {
   font-size: var(--type-copyright);
-  font-weight: 400;
+  font-weight: var(--font-weight-body);
   line-height: 1.45;
 }
 
-.store-shell {
-  width: 100%;
-  max-width: 100%;
+.store-shell,
+.responsive-container {
+  width: min(calc(100% - (var(--page-gutter) * 2)), var(--page-max));
   margin-inline: auto;
-  padding-inline: 1rem;
 }
 
-@media (min-width: 640px) {
-  .store-shell {
-    padding-inline: 1.5rem;
-  }
+.store-shell-wide {
+  width: min(calc(100% - (var(--page-gutter) * 2)), var(--page-max-wide));
+  margin-inline: auto;
+}
+
+.store-shell-prose {
+  width: min(calc(100% - (var(--page-gutter) * 2)), var(--page-max-prose));
+  margin-inline: auto;
+}
+
+.section-y {
+  padding-block: var(--section-space);
+}
+
+.product-grid {
+  display: grid;
+  gap: var(--grid-gap);
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(
+      max(
+        min(100%, var(--card-min)),
+        calc((100% - (var(--card-max-cols) - 1) * var(--grid-gap)) / var(--card-max-cols))
+      ),
+      1fr
+    )
+  );
+}
+
+.category-grid {
+  display: grid;
+  gap: var(--category-gap);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+}
+
+.promo-grid {
+  display: grid;
+  gap: var(--grid-gap);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16.5rem), 1fr));
+}
+
+.hero-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--hero-gap);
+  align-items: center;
 }
 
 @media (min-width: 1024px) {
-  .store-shell {
-    padding-inline: 2rem;
+  .hero-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 34rem);
+    align-items: center;
   }
 }
 
-@media (min-width: 1280px) {
-  .store-shell {
-    padding-inline: 2.5rem;
-  }
+.hero-visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
 }
 
-@media (min-width: 1536px) {
-  .store-shell {
-    max-width: 100rem;
-    padding-inline: 3rem;
-  }
-}
-
-@media (min-width: 1920px) {
-  .store-shell {
-    max-width: 112.5rem;
-  }
-}
-
-@media (min-width: 2560px) {
-  .store-shell {
-    max-width: 137.5rem;
-    padding-inline: 4rem;
+@media (min-width: 375px) and (max-width: 639px) {
+  :root {
+    --card-min: 10rem;
   }
 }
 

@@ -38,7 +38,7 @@ export function HomepageProductCard({
       'bg-white border border-slate-200 rounded-xl overflow-hidden flex flex-col hover:shadow-lg hover:border-slate-300 transition-all group',
       className
     )}>
-      <div className="relative h-48 w-full bg-white overflow-hidden border-b border-slate-100">
+      <div className="relative aspect-square w-full bg-white overflow-hidden border-b border-slate-100">
         <div className="absolute top-2.5 left-2.5 z-10 flex flex-col gap-1">
           {discount ? (
             <span className="bg-rose-600 text-white type-tiny font-semibold px-2 py-0.5 rounded tracking-tight w-fit">
@@ -80,7 +80,7 @@ export function HomepageProductCard({
             seed={product.sku}
             alt={product.name}
             fill
-            sizes="320px"
+            sizes="(max-width: 640px) 50vw, (max-width: 1280px) 25vw, 280px"
             className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
           />
         </Link>

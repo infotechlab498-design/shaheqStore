@@ -19,7 +19,7 @@ export default function CartPage() {
   const total = subtotal + (items.length > 0 ? shippingFee : 0);
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <div className="store-shell py-8 space-y-8">
       {/* Breadcrumbs */}
       <Breadcrumb
         items={[
@@ -53,7 +53,7 @@ export default function CartPage() {
                         alt={item.productName}
                         fill
                         sizes="72px"
-                        className="object-cover"
+                        className="object-contain p-1"
                       />
                     </div>
                     <div className="space-y-1">

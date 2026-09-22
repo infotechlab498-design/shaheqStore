@@ -90,7 +90,7 @@ export function QuickShop({ products }: QuickShopProps) {
 
   return (
     <section className="w-full bg-[#F8FAFC] border-b border-slate-200">
-      <div className="w-full bg-white border-b border-slate-200 sticky top-[8.75rem] z-30">
+      <div className="w-full bg-white border-b border-slate-200 sticky top-[4.75rem] z-30">
         <div className="store-shell flex items-center gap-3 py-3 overflow-x-auto no-scrollbar">
           <div className="shrink-0">
             <div className="type-eyebrow text-[#073574]">Quick shop</div>
@@ -118,7 +118,7 @@ export function QuickShop({ products }: QuickShopProps) {
         </div>
       </div>
 
-      <div className="store-shell py-8 sm:py-10">
+      <div className="store-shell section-y">
         <div className="flex items-end justify-between gap-4 mb-6">
           <div>
             <div className="inline-flex items-center gap-1.5 type-eyebrow text-blue-700">
@@ -154,7 +154,8 @@ export function QuickShop({ products }: QuickShopProps) {
 
         <div
           ref={scrollerRef}
-          className={`flex gap-4 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-2 ${loading ? 'opacity-70' : ''}`}
+          className={`flex overflow-x-auto no-scrollbar snap-x snap-mandatory pb-2 ${loading ? 'opacity-70' : ''}`}
+          style={{ gap: 'var(--grid-gap)' }}
         >
           {items.length === 0 && !loading && (
             <p className="text-sm text-slate-500 py-10">No products matched this Quick Shop filter.</p>
@@ -163,7 +164,7 @@ export function QuickShop({ products }: QuickShopProps) {
             <HomepageProductCard
               key={product.id}
               product={product}
-              className="w-[min(100%,18.5rem)] sm:w-[19.5rem] lg:w-[20.5rem] shrink-0 snap-start"
+              className="w-[min(100%,var(--card-rail))] shrink-0 snap-start"
             />
           ))}
         </div>

@@ -4,7 +4,7 @@ import { siteConfig } from '@/lib/config/site';
 
 export default function AboutPage() {
   return (
-    <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-10 space-y-12 font-sans">
+    <div className="store-shell py-10 space-y-12 font-sans">
       <Breadcrumb
         items={[
           { label: 'Home', href: '/' },
@@ -16,10 +16,10 @@ export default function AboutPage() {
         <span className="text-xs font-mono uppercase tracking-widest text-amber-600">
           Corporate & Engineering Profile
         </span>
-        <h1 className="text-3xl sm:text-4xl font-bold font-mono text-zinc-900">
+        <h1 className="type-page text-zinc-900">
           Precision Systems. Industrial Rigor.
         </h1>
-        <p className="text-base text-zinc-600 leading-relaxed max-w-3xl">
+        <p className="type-body text-zinc-600 max-w-3xl">
           Alpha Tech is an advanced engineering enterprise headquartered in Lahore, Pakistan. We supply aerospace-grade drone components, high-discharge lithium power systems, precision autoclave carbon fiber, and provide industrial-grade additive manufacturing and CAD modeling.
         </p>
       </div>

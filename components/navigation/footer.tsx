@@ -7,7 +7,7 @@ export function Footer() {
 
   return (
     <footer className="w-full bg-white text-slate-800 border-t border-slate-200 type-small">
-      <div className="store-shell py-12">
+      <div className="store-shell section-y">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           <div className="lg:col-span-2 space-y-3">
             <Link href="/" className="flex items-center gap-2">

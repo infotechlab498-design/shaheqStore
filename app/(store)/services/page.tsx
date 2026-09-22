@@ -17,7 +17,7 @@ export default async function ServicesPage() {
   const services = await ServiceRepository.getAll();
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+    <div className="store-shell py-8 space-y-12">
       {/* Breadcrumbs */}
       <Breadcrumb
         items={[

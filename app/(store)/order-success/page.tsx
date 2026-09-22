@@ -21,7 +21,7 @@ function OrderSuccessContent() {
   };
 
   return (
-    <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-16 text-center space-y-8">
+    <div className="store-shell-prose py-16 text-center space-y-8">
       <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
         <CheckCircle2 className="h-10 w-10" />
       </div>

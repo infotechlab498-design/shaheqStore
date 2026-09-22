@@ -90,7 +90,7 @@ export function ProductDetailView({ product, relatedProducts = [] }: ProductDeta
 
   return (
     <div className="bg-[#F8FAFC]">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-10">
+      <div className="store-shell py-6 sm:py-8 space-y-10">
         <Breadcrumb
           items={[
             { label: 'Home', href: '/' },
@@ -100,7 +100,7 @@ export function ProductDetailView({ product, relatedProducts = [] }: ProductDeta
           ]}
         />
 
-        <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        <section className="grid grid-cols-1 lg:grid-cols-12 items-start" style={{ gap: 'var(--hero-gap)' }}>
           <div className="lg:col-span-6 space-y-3">
             <div className="relative aspect-square w-full overflow-hidden rounded-xl border border-slate-200 bg-white">
               <CatalogImage
@@ -396,8 +396,8 @@ export function ProductDetailView({ product, relatedProducts = [] }: ProductDeta
           <section className="space-y-5">
             <div className="flex items-end justify-between gap-3">
               <div>
-                <div className="text-[11px] uppercase font-extrabold tracking-widest text-blue-700"> complementary hardware</div>
-                <h2 className="text-xl sm:text-2xl font-black text-[#073574] tracking-tight uppercase">
+                <div className="type-eyebrow text-blue-700"> complementary hardware</div>
+                <h2 className="type-section text-[#073574] uppercase">
                   Hardware & tooling for {product.category.name}
                 </h2>
               </div>
@@ -405,7 +405,7 @@ export function ProductDetailView({ product, relatedProducts = [] }: ProductDeta
                 View category
               </Link>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="product-grid">
               {relatedProducts.map((item) => (
                 <HomepageProductCard key={item.id} product={item} />
               ))}

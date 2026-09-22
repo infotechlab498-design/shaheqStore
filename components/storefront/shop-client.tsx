@@ -99,7 +99,7 @@ export function ShopClient({ initialProducts, categories }: ShopClientProps) {
     sortBy !== 'featured';
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <div className="store-shell py-8 space-y-8">
       {/* Breadcrumb Trail */}
       <Breadcrumb
         items={[
@@ -120,13 +120,13 @@ export function ShopClient({ initialProducts, categories }: ShopClientProps) {
       {/* Catalog Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-zinc-200 pb-6">
         <div>
-          <span className="text-xs font-mono uppercase tracking-widest text-zinc-500">
+          <span className="type-eyebrow text-zinc-500">
             Alpha Tech Inventory
           </span>
-          <h1 className="text-2xl sm:text-4xl font-bold font-mono text-zinc-900 mt-1">
+          <h1 className="type-page text-zinc-900 mt-1">
             Hardware & Components Catalog
           </h1>
-          <p className="mt-1 text-sm text-zinc-500 max-w-2xl">
+          <p className="mt-1 type-small text-zinc-500 max-w-2xl">
             Aerospace grade composites, high-discharge lithium polymer cells, brushless motors, and precision robotics hardware.
           </p>
         </div>
@@ -270,7 +270,7 @@ export function ShopClient({ initialProducts, categories }: ShopClientProps) {
         {/* Right Product Grid */}
         <main className="md:col-span-9">
           {filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="product-grid">
               {filteredProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}

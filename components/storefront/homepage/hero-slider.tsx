@@ -94,46 +94,46 @@ export function HeroSlider({
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="store-shell py-8 lg:py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <div key={product.id} className="lg:col-span-6 space-y-5 hero-copy">
-            <div className="inline-flex items-center gap-2 bg-[#EAF2FF] border border-blue-200/80 text-[#073574] px-3 py-1 rounded-sm type-eyebrow">
-              <Zap className="w-3.5 h-3.5 text-blue-700" />
+      <div className="store-shell py-5 lg:py-6">
+        <div className="hero-layout">
+          <div key={product.id} className="space-y-3 hero-copy">
+            <div className="inline-flex items-center gap-1.5 bg-[#EAF2FF] border border-blue-200/80 text-[#073574] px-2.5 py-0.5 rounded-sm type-eyebrow">
+              <Zap className="w-3 h-3 text-blue-700" />
               {kickerFor(product)}
             </div>
             <h1 className="type-hero text-[#073574] uppercase">
               {headlineFor(product)}
             </h1>
-            <p className="type-hero-desc text-slate-600 max-w-xl">
+            <p className="type-hero-desc text-slate-600 max-w-md">
               {product.shortDescription}
             </p>
-            <div className="grid grid-cols-3 gap-3 py-2 max-w-md">
+            <div className="grid grid-cols-3 gap-2 py-1 max-w-sm">
               {[
                 { label: 'In stock', value: String(product.stock), dot: inStock },
                 { label: 'Category', value: product.category.name },
                 { label: specs[0]?.label || 'Catalog', value: specs[0]?.value || String(catalogCount) },
               ].map((metric) => (
-                <div key={metric.label} className="bg-slate-50 border border-slate-200 rounded p-2.5 min-h-[4.25rem]">
+                <div key={metric.label} className="bg-slate-50 border border-slate-200 rounded px-2 py-1.5">
                   <div className="type-tiny uppercase text-slate-500 tracking-wider line-clamp-1">{metric.label}</div>
-                  <div className="type-card-title text-[#073574] mt-0.5 flex items-center gap-1">
-                    {metric.dot && <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />}
-                    <span className="line-clamp-2">{metric.value}</span>
+                  <div className="text-[13px] font-semibold text-[#073574] mt-0.5 flex items-center gap-1">
+                    {metric.dot && <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />}
+                    <span className="line-clamp-1">{metric.value}</span>
                   </div>
                 </div>
               ))}
             </div>
-            <div className="flex flex-wrap items-center gap-3 pt-1">
+            <div className="flex flex-wrap items-center gap-2 pt-0.5">
               <Link
                 href={`/shop?category=${product.category.slug}`}
-                className="bg-[#073574] hover:bg-[#062A63] text-white px-6 py-3 rounded-md type-button uppercase shadow-sm inline-flex items-center gap-2"
+                className="bg-[#073574] hover:bg-[#062A63] text-white px-3.5 py-2 rounded-md type-button uppercase shadow-sm inline-flex items-center gap-1.5"
               >
-                Shop {product.category.name} <ArrowRight className="w-4 h-4" />
+                Shop {product.category.name} <ArrowRight className="w-3.5 h-3.5" />
               </Link>
               <Link
                 href={`/products/${product.slug}`}
-                className="bg-white hover:bg-slate-50 text-[#073574] border border-slate-300 px-5 py-3 rounded-md type-button uppercase inline-flex items-center gap-2"
+                className="bg-white hover:bg-slate-50 text-[#073574] border border-slate-300 px-3.5 py-2 rounded-md type-button uppercase inline-flex items-center gap-1.5"
               >
-                <FileText className="w-4 h-4 text-blue-600" />
+                <FileText className="w-3.5 h-3.5 text-blue-600" />
                 Specs & Guide
               </Link>
             </div>
@@ -142,9 +142,9 @@ export function HeroSlider({
             </p>
           </div>
 
-          <div className="lg:col-span-6 relative">
-            <div className="relative rounded-xl overflow-hidden bg-[#0A1A33] border border-slate-800 shadow-xl">
-              <div className="relative h-[320px] sm:h-[400px] w-full">
+          <div className="relative lg:justify-self-end w-full max-w-[34rem]">
+            <div className="relative rounded-xl overflow-hidden bg-[#0A1A33] border border-slate-800 shadow-lg">
+              <div className="hero-visual w-full max-w-none">
                 {slides.map((slide, slideIndex) => (
                   <div
                     key={slide.id}
@@ -159,16 +159,16 @@ export function HeroSlider({
                       alt={slide.name}
                       fill
                       priority={slideIndex === 0}
-                      sizes="(max-width: 1024px) 100vw, (max-width: 1920px) 50vw, 40vw"
-                      className="object-cover opacity-90"
+                      sizes="(max-width: 1024px) 100vw, 544px"
+                      className="object-cover"
                     />
                   </div>
                 ))}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#061730] via-transparent to-transparent z-20 pointer-events-none" />
-                <div className="absolute top-4 left-4 z-30 bg-black/70 text-white type-tiny font-medium px-3 py-1 rounded-sm">
+                <div className="absolute top-2.5 left-2.5 z-30 bg-black/70 text-white text-[10px] font-medium px-2 py-0.5 rounded-sm">
                   {product.sku}
                 </div>
-                <span className={`absolute top-4 right-4 z-30 type-tiny font-semibold px-2 py-1 rounded ${
+                <span className={`absolute top-2.5 right-2.5 z-30 text-[10px] font-semibold px-2 py-0.5 rounded ${
                   stock.tone === 'emerald' ? 'bg-emerald-600 text-white' : stock.tone === 'rose' ? 'bg-rose-600 text-white' : 'bg-[#073574] text-white'
                 }`}>
                   {stock.label}
@@ -179,30 +179,30 @@ export function HeroSlider({
                     <button
                       type="button"
                       onClick={() => goTo(index - 1)}
-                      className="absolute left-3 top-1/2 -translate-y-1/2 z-30 h-9 w-9 rounded-full bg-white/90 text-[#073574] hover:bg-white shadow"
+                      className="absolute left-2 top-1/2 -translate-y-1/2 z-30 h-7 w-7 rounded-full bg-white/90 text-[#073574] hover:bg-white shadow"
                       aria-label="Previous featured product"
                     >
-                      <ChevronLeft className="w-5 h-5 mx-auto" />
+                      <ChevronLeft className="w-4 h-4 mx-auto" />
                     </button>
                     <button
                       type="button"
                       onClick={() => goTo(index + 1)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 z-30 h-9 w-9 rounded-full bg-white/90 text-[#073574] hover:bg-white shadow"
+                      className="absolute right-2 top-1/2 -translate-y-1/2 z-30 h-7 w-7 rounded-full bg-white/90 text-[#073574] hover:bg-white shadow"
                       aria-label="Next featured product"
                     >
-                      <ChevronRight className="w-5 h-5 mx-auto" />
+                      <ChevronRight className="w-4 h-4 mx-auto" />
                     </button>
                   </>
                 )}
 
-                <div className="absolute bottom-4 left-4 right-4 z-30 bg-white/95 p-4 rounded-lg border border-slate-200/90 flex flex-wrap items-center justify-between gap-3">
+                <div className="absolute bottom-2.5 left-2.5 right-2.5 z-30 bg-white/95 px-3 py-2 rounded-md border border-slate-200/90 flex items-center justify-between gap-2">
                   <div className="min-w-0">
                     <div className="type-eyebrow text-blue-700">Featured hardware</div>
-                    <div className="type-card-title text-[#073574] line-clamp-1">{product.name}</div>
-                    <div className="type-tiny text-slate-500 mt-0.5">{product.brand} · {product.category.name}</div>
+                    <div className="text-[13px] font-semibold text-[#073574] line-clamp-1">{product.name}</div>
+                    <div className="text-[10px] text-slate-500">{product.brand} · {product.category.name}</div>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <div className="type-price text-emerald-700">{formatPKR(product.basePrice)}</div>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <div className="text-sm font-bold text-emerald-700">{formatPKR(product.basePrice)}</div>
                     <button
                       type="button"
                       disabled={!inStock}
@@ -216,7 +216,7 @@ export function HeroSlider({
                           imageUrl: productImage(product),
                         })
                       }
-                      className="bg-[#073574] hover:bg-[#062A63] disabled:opacity-40 text-white p-2.5 rounded-md"
+                      className="bg-[#073574] hover:bg-[#062A63] disabled:opacity-40 text-white h-7 w-7 rounded-md text-sm font-bold"
                       aria-label={`Add ${product.name} to cart`}
                     >
                       +
@@ -232,16 +232,16 @@ export function HeroSlider({
             </div>
 
             {slides.length > 1 && (
-              <div className="mt-4 flex items-center gap-2">
+              <div className="mt-2.5 flex items-center gap-2">
                 <button
                   type="button"
                   onClick={() => setPaused((value) => !value)}
-                  className="h-8 w-8 rounded-full border border-slate-200 text-[#073574] hover:bg-slate-50"
+                  className="h-7 w-7 rounded-full border border-slate-200 text-[#073574] hover:bg-slate-50"
                   aria-label={paused ? 'Play featured slider' : 'Pause featured slider'}
                 >
-                  {paused ? <Play className="w-3.5 h-3.5 mx-auto" /> : <Pause className="w-3.5 h-3.5 mx-auto" />}
+                  {paused ? <Play className="w-3 h-3 mx-auto" /> : <Pause className="w-3 h-3 mx-auto" />}
                 </button>
-                <div className="flex gap-2 overflow-x-auto no-scrollbar">
+                <div className="flex gap-1.5 overflow-x-auto no-scrollbar">
                   {slides.map((slide, slideIndex) => (
                     <button
                       key={slide.id}
@@ -249,7 +249,7 @@ export function HeroSlider({
                       onClick={() => goTo(slideIndex)}
                       aria-label={`Show ${slide.name}`}
                       aria-current={slideIndex === index}
-                      className={`relative h-12 w-12 shrink-0 overflow-hidden rounded-md border ${
+                      className={`relative h-9 w-9 shrink-0 overflow-hidden rounded-md border ${
                         slideIndex === index ? 'border-[#073574] ring-2 ring-[#073574]/20' : 'border-slate-200 opacity-70 hover:opacity-100'
                       }`}
                     >
@@ -258,7 +258,7 @@ export function HeroSlider({
                         seed={slide.sku}
                         alt=""
                         fill
-                        sizes="48px"
+                        sizes="36px"
                         className="object-cover"
                       />
                     </button>

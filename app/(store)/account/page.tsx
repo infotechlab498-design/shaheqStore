@@ -22,7 +22,7 @@ export default function AccountDashboardPage() {
   const activeQuotes = DEMO_ADMIN_QUOTES.slice(0, 2);
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <div className="store-shell py-8 space-y-8">
       {/* Breadcrumbs */}
       <Breadcrumb
         items={[

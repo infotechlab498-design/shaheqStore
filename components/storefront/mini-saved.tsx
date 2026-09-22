@@ -33,7 +33,7 @@ export function MiniSaved() {
             items.map((item) => (
               <div key={item.productId} className="flex gap-3 border-b border-slate-100 pb-4">
                 <Link href={`/products/${item.slug}`} onClick={() => setOpen(false)} className="relative h-16 w-16 shrink-0 rounded border border-slate-200 overflow-hidden bg-slate-50">
-                  <CatalogImage src={item.imageUrl} seed={item.sku} alt={item.name} fill sizes="64px" className="object-cover" />
+                  <CatalogImage src={item.imageUrl} seed={item.sku} alt={item.name} fill sizes="64px" className="object-contain p-0.5" />
                 </Link>
                 <div className="flex-1 min-w-0">
                   <Link href={`/products/${item.slug}`} onClick={() => setOpen(false)} className="text-xs font-bold text-[#073574] line-clamp-2">

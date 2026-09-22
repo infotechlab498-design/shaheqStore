@@ -9,7 +9,7 @@ import { formatPKR } from '@/lib/utils/currency';
 
 export default function CustomerQuotesPage() {
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <div className="store-shell py-8 space-y-8">
       <Breadcrumb
         items={[
           { label: 'Home', href: '/' },

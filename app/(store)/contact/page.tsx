@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 
 export default function ContactPage() {
   return (
-    <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-10 space-y-10 font-sans">
+    <div className="store-shell py-10 space-y-10 font-sans">
       <Breadcrumb
         items={[
           { label: 'Home', href: '/' },
@@ -18,7 +18,7 @@ export default function ContactPage() {
         <span className="text-xs font-mono uppercase tracking-widest text-amber-600">
           Support & Consultation
         </span>
-        <h1 className="text-3xl sm:text-4xl font-bold font-mono text-zinc-900">
+        <h1 className="type-page text-zinc-900">
           Connect with Alpha Tech Engineers
         </h1>
         <p className="text-sm text-zinc-600 max-w-2xl leading-relaxed">

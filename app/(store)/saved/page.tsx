@@ -11,7 +11,7 @@ export default function SavedPage() {
   const { items, removeItem } = useWishlist();
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <div className="store-shell py-8 space-y-8">
       <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Saved items' }]} />
       <div className="border-b border-slate-200 pb-4">
         <h1 className="type-page text-[#073574]">Saved hardware</h1>
@@ -31,7 +31,7 @@ export default function SavedPage() {
           {items.map((item) => (
             <div key={item.productId} className="rounded-xl border border-slate-200 bg-white p-4 flex gap-4">
               <Link href={`/products/${item.slug}`} className="relative h-20 w-20 shrink-0 rounded border border-slate-200 overflow-hidden bg-slate-50">
-                <CatalogImage src={item.imageUrl} seed={item.sku} alt={item.name} fill sizes="80px" className="object-cover" />
+                <CatalogImage src={item.imageUrl} seed={item.sku} alt={item.name} fill sizes="80px" className="object-contain p-1" />
               </Link>
               <div className="min-w-0 flex-1">
                 <Link href={`/products/${item.slug}`} className="text-sm font-bold text-[#073574] line-clamp-2">
